@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+ <title>johnamata's blog</title>
+ <link href="/blog/atom.xml" rel="self"/>
+ <link href="http://localhost:4000/blog/"/>
+ <updated>2021-08-05T19:13:09+08:00</updated>
+ <id>http://localhost:4000</id>
+ <author>
+   <name>John</name>
+   <email></email>
+ </author>
+
+ 
+ <entry>
+   <title>First Blog Post! Learning React and a simple movie webapp</title>
+   <link href="http://localhost:4000/blog/2021/08/05/huuluu/"/>
+   <updated>2021-08-05T00:00:00+08:00</updated>
+   <id>http://localhost:4000/2021/08/05/huuluu</id>
+   <content type="html">&lt;p&gt;Recently I thought of getting into web development, picking up a few skills here and there and an easy tech stack to build products I’m thinking of building later. I settled with ReactJS and NextJS. To learn this, I’ll be building a simple clone of hulu.com.  It’s still not finished and I hope to finish it later this month after going through a bunch of other tutorials.&lt;/p&gt;
+
+&lt;p&gt;code is at: &lt;a href=&quot;https://github.com/youwillneverafford1bitcoin/huuluu&quot;&gt;https://github.com/youwillneverafford1bitcoin/huuluu&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;commit 1: init&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;just basic readme and initial gitignore&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;commit 2: setup&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;start project with next.js
+    &lt;ul&gt;
+      &lt;li&gt;$ npx create-next-app NameOfApp
+        &lt;ul&gt;
+          &lt;li&gt;we now have a NameOfApp directory, cd into it, and run the dev server (puts app to  http://localhost:3000) with&lt;/li&gt;
+          &lt;li&gt;$ npm dev&lt;/li&gt;
+          &lt;li&gt;from: https://nextjs.org/learn/basics/create-nextjs-app/setup&lt;/li&gt;
+          &lt;li&gt;got an error when I did &lt;strong&gt;$ npx create-next-app NameOfApp&lt;/strong&gt;:&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; npm ERR! Unexpected end of JSON input while parsing near '...&quot;:&quot;3.0.0&quot;,&quot;@zeit/ncc&quot;'
+ npm ERR! A complete log of this run can be found in:
+ npm ERR!     /Users/patamata/.npm/_logs/2021-07-28T08_16_02_041Z-debug.log
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;ul&gt;
+  &lt;li&gt;nothing on stackoverflow and github issues helped so I tried deleting the .npm and did the command again, now it works&lt;/li&gt;
+  &lt;li&gt;page routing is supported out of the box with next.js and can be seen on /pages with index.js for example representing the index page, creating about.js would be the about page&lt;/li&gt;
+  &lt;li&gt;delete package-lock.json and use yarn to get right packages for us&lt;/li&gt;
+  &lt;li&gt;$ yarn&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;commit 3: tailwind and initial build&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;tried a different setup with&lt;/li&gt;
+  &lt;li&gt;$ &lt;strong&gt;npx create-next-app -e with-tailwindcss&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;anyhow it works and setups up everyything with tailwindcss but anyhow i deleted it and went to the docs instead to try setting it up the longer way&lt;/li&gt;
+  &lt;li&gt;add tailwind CSS to project
+    &lt;ul&gt;
+      &lt;li&gt;$ npm install &lt;strong&gt;-D tailwindcss@latest postcss@latest autoprefixer@latest&lt;/strong&gt;&lt;/li&gt;
+      &lt;li&gt;from: https://tailwindcss.com/docs/guides/nextjs&lt;/li&gt;
+      &lt;li&gt;but I wanted it in yarn so I only took the bolded string&lt;/li&gt;
+      &lt;li&gt;$ yarn add -D tailwindcss@latest postcss@latest autoprefixer@latest&lt;/li&gt;
+      &lt;li&gt;afterwards, time to create config files (tailwind.config.js &amp;amp; postcss.config.js) with:&lt;/li&gt;
+      &lt;li&gt;$ npx tailwindcss init -p&lt;/li&gt;
+      &lt;li&gt;we’re still following https://tailwindcss.com/docs/guides/nextjs&lt;/li&gt;
+      &lt;li&gt;w/c next is “Configure Tailwind to remove unused styles in production”&lt;/li&gt;
+      &lt;li&gt;where we add to &lt;strong&gt;purge:&lt;/strong&gt; line at tailwind.config.js file the ff:&lt;/li&gt;
+      &lt;li&gt;purge: [’./pages/&lt;em&gt;*/&lt;/em&gt;.{js,ts,jsx,tsx}’, ‘./components/&lt;em&gt;*/&lt;/em&gt;.{js,ts,jsx,tsx}’],&lt;/li&gt;
+      &lt;li&gt;purge cleans css we wont use&lt;/li&gt;
+      &lt;li&gt;going tangential frm the setup, we add jit to the tailwind.config.js file: &lt;strong&gt;mode ‘jit’,&lt;/strong&gt;&lt;/li&gt;
+      &lt;li&gt;back to official setup docs https://tailwindcss.com/docs/guides/nextjs&lt;/li&gt;
+      &lt;li&gt;we’re on “Include Tailwind in your CSS” and we choose the 2nd option “Include Tailwind in your CSS”&lt;/li&gt;
+      &lt;li&gt;we just follow it and go to styles/globals.css and replace everything with what’s on the docs&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;$ yarn run dev&lt;/li&gt;
+  &lt;li&gt;faced an error on sonething like missing dev, so i added dev on the scripts at package.json but there’s still the error:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sh: next: command not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! @ dev: `next dev`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the @ dev script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;so I decided to upgrade yarn with &lt;strong&gt;$ yarn install&lt;/strong&gt; and then &lt;strong&gt;$ yarn upgrade&lt;/strong&gt; and now it works I see http://localhost:3000/&lt;/li&gt;
+  &lt;li&gt;edited index.js page to just a &amp;lt;h1&amp;gt;let’s goo&amp;lt;/h1&amp;gt; to test things out and all’s OK&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;commit 4: start setup components&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;decided to work on 3 components for the page: header where the activity icons will be such as search, navbar for movie filtering, and results for movies&lt;/li&gt;
+  &lt;li&gt;created a directory for components, then made js files for the components like &lt;strong&gt;header.js&lt;/strong&gt;, etc.&lt;/li&gt;
+  &lt;li&gt;updated next.config.js to allow images and others&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+ </entry>
+ 
+
+</feed>

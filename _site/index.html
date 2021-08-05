@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark-poole">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+    
+      johnamata's blog
+    
+  </title>
+
+  <link rel="stylesheet" href="/blog/styles.css">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/blog/assets/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/blog/assets/favicon.ico">
+  <link rel="alternate" type="application/atom+xml" title="johnamata's blog" href="/blog/atom.xml">
+
+  <!-- Begin Jekyll SEO tag v2.6.1 -->
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Home" />
+<meta name="author" content="John" />
+<meta property="og:locale" content="en_US" />
+<link rel="canonical" href="http://localhost:4000/blog/" />
+<meta property="og:url" content="http://localhost:4000/blog/" />
+<meta property="og:site_name" content="johnamata’s blog" />
+<script type="application/ld+json">
+{"author":{"@type":"Person","name":"John"},"headline":"Home","url":"http://localhost:4000/blog/","name":"johnamata’s blog","@type":"WebSite","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+
+
+  <body>
+    <div class="container content">
+      <header class="masthead">
+        <h3 class="masthead-title">
+          <a href="/blog/" title="Home">johnamata's blog</a>
+
+          <nav class="nav">
+            
+            <small><a href="/blog/">Home</a></small>
+            
+            <small><a href="/blog/archive">Archive</a></small>
+            
+            <small><a href="/blog/about">About</a></small>
+            
+          </nav>
+        </h3>
+      </header>
+
+      <main>
+        <div class="posts">
+  
+  <article class="post">
+    <h1 class="post-title">
+      <a href="/blog/2021/08/05/huuluu/">
+        First Blog Post! Learning React and a simple movie webapp
+      </a>
+    </h1>
+
+    <time datetime="2021-08-05T00:00:00+08:00" class="post-date">05 Aug 2021</time>
+
+    <p>Recently I thought of getting into web development, picking up a few skills here and there and an easy tech stack to build products I’m thinking of building later. I settled with ReactJS and NextJS. To learn this, I’ll be building a simple clone of hulu.com.  It’s still not finished and I hope to finish it later this month after going through a bunch of other tutorials.</p>
+
+<p>code is at: <a href="https://github.com/youwillneverafford1bitcoin/huuluu">https://github.com/youwillneverafford1bitcoin/huuluu</a></p>
+
+<p>commit 1: init</p>
+
+<ul>
+  <li>just basic readme and initial gitignore</li>
+</ul>
+
+<p>commit 2: setup</p>
+
+<ul>
+  <li>start project with next.js
+    <ul>
+      <li>$ npx create-next-app NameOfApp
+        <ul>
+          <li>we now have a NameOfApp directory, cd into it, and run the dev server (puts app to  http://localhost:3000) with</li>
+          <li>$ npm dev</li>
+          <li>from: https://nextjs.org/learn/basics/create-nextjs-app/setup</li>
+          <li>got an error when I did <strong>$ npx create-next-app NameOfApp</strong>:</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> npm ERR! Unexpected end of JSON input while parsing near '...":"3.0.0","@zeit/ncc"'
+ npm ERR! A complete log of this run can be found in:
+ npm ERR!     /Users/patamata/.npm/_logs/2021-07-28T08_16_02_041Z-debug.log
+</code></pre></div></div>
+<ul>
+  <li>nothing on stackoverflow and github issues helped so I tried deleting the .npm and did the command again, now it works</li>
+  <li>page routing is supported out of the box with next.js and can be seen on /pages with index.js for example representing the index page, creating about.js would be the about page</li>
+  <li>delete package-lock.json and use yarn to get right packages for us</li>
+  <li>$ yarn</li>
+</ul>
+
+<p>commit 3: tailwind and initial build</p>
+
+<ul>
+  <li>tried a different setup with</li>
+  <li>$ <strong>npx create-next-app -e with-tailwindcss</strong></li>
+  <li>anyhow it works and setups up everyything with tailwindcss but anyhow i deleted it and went to the docs instead to try setting it up the longer way</li>
+  <li>add tailwind CSS to project
+    <ul>
+      <li>$ npm install <strong>-D tailwindcss@latest postcss@latest autoprefixer@latest</strong></li>
+      <li>from: https://tailwindcss.com/docs/guides/nextjs</li>
+      <li>but I wanted it in yarn so I only took the bolded string</li>
+      <li>$ yarn add -D tailwindcss@latest postcss@latest autoprefixer@latest</li>
+      <li>afterwards, time to create config files (tailwind.config.js &amp; postcss.config.js) with:</li>
+      <li>$ npx tailwindcss init -p</li>
+      <li>we’re still following https://tailwindcss.com/docs/guides/nextjs</li>
+      <li>w/c next is “Configure Tailwind to remove unused styles in production”</li>
+      <li>where we add to <strong>purge:</strong> line at tailwind.config.js file the ff:</li>
+      <li>purge: [’./pages/<em>*/</em>.{js,ts,jsx,tsx}’, ‘./components/<em>*/</em>.{js,ts,jsx,tsx}’],</li>
+      <li>purge cleans css we wont use</li>
+      <li>going tangential frm the setup, we add jit to the tailwind.config.js file: <strong>mode ‘jit’,</strong></li>
+      <li>back to official setup docs https://tailwindcss.com/docs/guides/nextjs</li>
+      <li>we’re on “Include Tailwind in your CSS” and we choose the 2nd option “Include Tailwind in your CSS”</li>
+      <li>we just follow it and go to styles/globals.css and replace everything with what’s on the docs</li>
+    </ul>
+  </li>
+  <li>$ yarn run dev</li>
+  <li>faced an error on sonething like missing dev, so i added dev on the scripts at package.json but there’s still the error:</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sh: next: command not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! @ dev: `next dev`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the @ dev script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+</code></pre></div></div>
+
+<ul>
+  <li>so I decided to upgrade yarn with <strong>$ yarn install</strong> and then <strong>$ yarn upgrade</strong> and now it works I see http://localhost:3000/</li>
+  <li>edited index.js page to just a &lt;h1&gt;let’s goo&lt;/h1&gt; to test things out and all’s OK</li>
+</ul>
+
+<p>commit 4: start setup components</p>
+
+<ul>
+  <li>decided to work on 3 components for the page: header where the activity icons will be such as search, navbar for movie filtering, and results for movies</li>
+  <li>created a directory for components, then made js files for the components like <strong>header.js</strong>, etc.</li>
+  <li>updated next.config.js to allow images and others</li>
+</ul>
+
+  </article>
+  
+</div>
+
+<div class="pagination">
+  
+    <span class="pagination-item older">Older</span>
+  
+  
+    <span class="pagination-item newer">Newer</span>
+  
+</div>
+
+      </main>
+
+      <footer class="footer">
+        <small>
+          &copy;
+          <time datetime="2021-08-05T19:13:09+08:00"
+            >2021</time
+          >. All rights reserved.
+        </small>
+      </footer>
+    </div>
+
+    
+  </body>
+</html>
